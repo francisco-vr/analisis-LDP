@@ -15,49 +15,6 @@ ipak(packages)
 
 lista <-read.csv(file = "Data Frames/votacion_comuna.csv")
 
-### Votos por Comuna, agrupados por distrito ##
-
-sum(lista$votos)
-
-
-#D12
-Pint <-filter(lista, comuna == "LA PINTANA")
-aggregate(Pint$votos, by=list(Pint$pacto), FUN=sum)
-
-Flor <-filter(lista, comuna == "LA FLORIDA")
-aggregate(Flor$votos, by=list(Flor$pacto), FUN=sum)
-
-PteAlt <-filter(lista, comuna == "PUENTE ALTO")
-aggregate(PteAlt$votos, by=list(PteAlt$pacto), FUN=sum)
-
-Pirque <-filter(lista, comuna == "PIRQUE")
-aggregate(Pirque$votos, by=list(Pirque$pacto), FUN=sum)
-
-SnJos <-filter(lista, comuna == "SAN JOSE DE MAIPO")
-aggregate(SnJos$votos, by=list(SnJos$pacto), FUN=sum)
-
-table(lista$comuna)
-
-## tareas
-
-# ver forma de crear variables de distritos a partir de las comunas
-# Crear mapas con los números de aprobación de LDP x comuna
-
-DFLDP <-aggregate(votos~pacto+comuna,lista,sum)
-
-write_csv(DFLDP, "votosxcomuna.csv")
-
-sum(lista$votos)
-
-aggregate(votos~pacto, lista, sum)
-
-
-class(lista$votos)
-
-sum(lista$votos)
-table(lista$votos)
-
-table(lista$pacto)
 
 # Crear distritos por comuna
 
@@ -71,17 +28,17 @@ lista <-lista %>%
                                           "FREIRINA","HUASCO","TIERRA AMARILLA","VALLENAR") ~ 'D4',
                               comuna %in% c("ANDACOLLO","CANELA","COMBARBALA","COQUIMBO","ILLAPEL","LA HIGUERA",
                                           "LA SERENA","LOS VILOS","MONTE PATRIA","OVALLE","PAIHUANO","PUNITAQUI",
-                                          "RIO HURTADO","SALAMANCA","VICUÑA") ~ 'D5',
+                                          "RIO HURTADO","SALAMANCA","VICUNA") ~ 'D5',
                               comuna %in% c("CABILDO","CALERA","CALLE LARGA","CATEMU","HIJUELAS","LA CRUZ","LA LIGUA",
-                                          "LIMACHE","LLAY-LLAY","LOS ANDES","NOGALES","OLMUE","PANQUEHUE","PAPUDO",
+                                          "LIMACHE","LLAILLAY","LOS ANDES","NOGALES","OLMUE","PANQUEHUE","PAPUDO",
                                           "PETORCA","PUCHUNCAVI","PUTAENDO","QUILLOTA","QUILPUE","QUINTERO","RINCONADA",
-                                          "SAN ESTEBAN","SAN FELIPE","SANTA MARÍA","VILLA ALEMANA","ZAPALLAR") ~ 'D6',
-                              comuna %in% c("ALGARROBO","CARTAGENA","CONCON","EL QUISCO","EL TABO",
+                                          "SAN ESTEBAN","SAN FELIPE","SANTA MARIA","VILLA ALEMANA","ZAPALLAR") ~ 'D6',
+                              comuna %in% c("ALGARROBO","CARTAGENA","CONCON","EL QUISCO","EL TABO","CASABLANCA",
                                           "ISLA DE PASCUA","JUAN FERNANDEZ","SAN ANTONIO","SANTO DOMINGO",
-                                          "VALPARAISO","VIÑA DEL MAR") ~ 'D7',
+                                          "VALPARAISO","VINA DEL MAR") ~ 'D7',
                               comuna %in% c("CERRILLOS","COLINA","ESTACION CENTRAL","LAMPA","MAIPU","PUDAHUEL","TILTIL",
                                           "QUILICURA") ~ 'D8',
-                              comuna %in% c("CERRO NAVIA","CONCHALI","HUECHURABA","INDEPENDENCIA","LO PADRO",
+                              comuna %in% c("CERRO NAVIA","CONCHALI","HUECHURABA","INDEPENDENCIA","LO PRADO",
                                           "QUINTA NORMAL","RECOLETA","RENCA") ~ 'D9',
                               comuna %in% c("LA GRANJA","MACUL","NUNOA","PROVIDENCIA","SAN JOAQUIN","SANTIAGO") ~ 'D10',
                               comuna %in% c("LA REINA","LAS CONDES","LO BARNECHEA","PENALOLEN","VITACURA") ~ 'D11',
@@ -89,27 +46,27 @@ lista <-lista %>%
                               comuna %in% c("EL BOSQUE","LA CISTERNA","LO ESPEJO","PEDRO AGUIRRE CERDA","SAN MIGUEL",
                                           "SAN RAMON") ~ 'D13',
                               comuna %in% c("ALHUE","BUIN","CALERA DE TANGO","CURACAVI","EL MONTE","ISLA DE MAIPO",
-                                          "MARIA PINTO","MELIPILLA","PADRE HURTADO","PAINE","PEÑAFLOR","SAN BERNARDO",
+                                          "MARIA PINTO","MELIPILLA","PADRE HURTADO","PAINE","PENAFLOR","SAN BERNARDO",
                                           "SAN PEDRO","TALAGANTE") ~ 'D14',
-                              comuna %in% c("CODEGUA","COINCO","COLTAUCO","DOÑIHUE","GRANEROS","MACHALÍ","MALLOA",
+                              comuna %in% c("CODEGUA","COINCO","COLTAUCO","DONIHUE","GRANEROS","MACHALI","MALLOA",
                                           "MOSTAZAL","OLIVAR","QUINTA DE TILCOCO","RANCAGUA","RENGO","REQUINOA") ~ 'D15',
                               comuna %in% c("CHEPICA","CHIMBARONGO","LA ESTRELLA","LAS CABRAS","LITUECHE","LOLOL",
                                           "MARCHIGUE","NANCAGUA","NAVIDAD","PALMILLA","PAREDONES","PERALILLO","PEUMO",
                                           "PICHIDEGUA","PICHILEMU","PLACILLA","PUMANQUE","SAN FERNANDO","SAN VICENTE",
                                           "SANTA CRUZ") ~ 'D16',
-                              comuna %in% c("CONSTITUCION","CUREPTO","CURICO","EMPEDRADO","HUALAÑE","LICANTEN","MAULE",
+                              comuna %in% c("CONSTITUCION","CUREPTO","CURICO","EMPEDRADO","HUALANE","LICANTEN","MAULE",
                                           "MOLINA","PELARCO","PENCAHUE","RAUCO","RIO CLARO","ROMERAL",
                                           "SAGRADA FAMILIA","SAN CLEMENTE","SAN RAFAEL","TALCA",
                                           "TENO","VICHUQUEN") ~ 'D17',
                               comuna %in% c("CAUQUENES","CHANCO","COLBUN","LINARES","LONGAVI","PARRAL","PELLUHUE",
                                           "RETIRO","SAN JAVIER","VILLA ALEGRE","YERBAS BUENAS") ~ 'D18',
                               comuna %in% c("BULNES","CHILLAN","CHILLAN VIEJO","COBQUECURA","COELEMU","COIHUECO",
-                                          "EL CARMEN","NINHUE","ÑIQUEN","PEMUCO","PINTO","PORTEZUELO","QUILLON",
+                                          "EL CARMEN","NINHUE","NIQUEN","PEMUCO","PINTO","PORTEZUELO","QUILLON",
                                           "QUIRIHUE","RANQUIL","SAN CARLOS","SAN FABIAN","SAN IGNACIO","SAN NICOLAS",
                                           "TREHUACO","YUNGAY") ~ 'D19',
                               comuna %in% c("CHIGUAYANTE","CONCEPCION","CORONEL","FLORIDA","HUALPEN","HUALQUI","PENCO",
                                           "SAN PEDRO DE LA PAZ","SANTA JUANA","TALCAHUANO","TOME") ~ 'D20',
-                              comuna %in% c("ALTO BIOBIO","ANTUCO","ARAUCO","CABRERO","CAÑETE","CONTULMO","CURANILAHUE",
+                              comuna %in% c("ALTO BIOBIO","ANTUCO","ARAUCO","CABRERO","CANETE","CONTULMO","CURANILAHUE",
                                           "LAJA","LEBU","LOS ALAMOS","LOS ANGELES","LOTA","MULCHEN","NACIMIENTO",
                                           "NEGRETE","QUILACO","QUILLECO","SAN ROSENDO","SANTA BARBARA","TIRUA",
                                           "TUCAPEL","YUMBEL") ~ 'D21',
@@ -127,9 +84,9 @@ lista <-lista %>%
                               comuna %in% c("ANCUD","CALBUCO","CASTRO","CHAITEN","CHONCHI","COCHAMO","CURACO DE VELEZ",
                                           "DALCAHUE","FUTALEUFU","HUALAIHUE","MAULLIN","PALENA","PUERTO MONTT",
                                           "PUQUELDON","QUEILEN","QUELLON","QUEMCHI","QUINCHAO") ~ 'D26',
-                              comuna %in% c("AYSEN","CHILE CHICO","CISNES","COCHRANE","COYHAIQUE","GUAIATECAS",
-                                          "LAGO VERDE","O'HIGGINS","RIO IBANEZ","TOREL") ~ 'D27',
-                              comuna %in% c("CABO DE HORNOS (EX-NAVARINO) Y ANTARTICA","LAGUNA BLANCA","NATALES",
+                              comuna %in% c("AYSEN","CHILE CHICO","CISNES","COCHRANE","COYHAIQUE","GUAITECAS",
+                                          "LAGO VERDE","O'HIGGINS","RIO IBANEZ","TORTEL") ~ 'D27',
+                              comuna %in% c("CABO DE HORNOS(EX-NAVARINO) Y ANTARTICA","LAGUNA BLANCA","NATALES",
                                           "PORVENIR","PRIMAVERA","PUNTA ARENAS","RIO VERDE","SAN GREGORIO",
                                           "TIMAUKEL","TORRES DEL PAINE") ~ 'D28'))
 # Ingreso de regiones
@@ -150,6 +107,37 @@ lista <-lista %>%
                             distrito %in% c("D25","D26") ~ 'Los Lagos',
                             distrito == 'D27' ~ 'Aisen',
                             distrito == 'D28' ~ 'Magallanes'))
-                            
-                            
+
+### Votos por Comuna, agrupados por distrito ##
+
+aggregate(votos~pacto, lista, sum)
+
+## creación de nuevas bases de datos, ya que sólo el pacto LDP está normalizado
+
+## coreccion base de datos (problema la serena)
+
+listaCor <-read.csv(file = "voto_total_const_comuna.csv")
+aggregate(votos~pacto, listaCor, sum)
+
+
+##base completa
+
+write_csv(lista,file = "voto_total_const_comuna.csv")
+
+
+# Base filtrada de LDP estandarizada
+
+LLDP <-listaCor%>%
+  filter(pacto == 'Del pueblo')%>%
+  select(candidato,votos,electo,lista,comuna,pacto,distrito,region)%>%
+  write_csv(file = "votos_LDP_comuna.csv")
+
+table(LLDP$comuna)
+
+# Base agregada con la suma por lista
+
+LDPSum <-aggregate(votos~pacto+comuna, listaCor, sum)%>%
+  write_csv("votos_LDP_sumados_comuna.csv")
+
+
 
